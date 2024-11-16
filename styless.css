@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+   
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    
+
+}
+
+h2 {
+    color: #333;
+}
+
+/* Tiêu đề chính trên trang chi tiết */
+.destination-detail h2 {
+    font-size: 4em; /* Tiêu đề lớn hơn để nổi bật */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Nội dung chi tiết */
+.destination-detail p {
+    font-size: 1.5em; /* Kích thước chữ lớn hơn để dễ đọc */
+    color: #555;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

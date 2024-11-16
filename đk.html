@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Tài Khoản - Website Du Lịch</title>
+    <link rel="stylesheet" href="đk.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Website Du Lịch</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="about.html">Giới Thiệu</a></li>
+                    <li><a href="destinations.html">Địa Điểm Du Lịch</a></li>
+                    <li><a href="register.html" class="active">Đăng Ký</a></li>
+                    <li><a href="login.html">Đăng Nhập</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Form Đăng Ký -->
+    <section class="register-section">
+        <div class="container">
+            <h2>Đăng Ký Tài Khoản</h2>
+            <form action="thành công.html" method="POST" class="register-form">
+                <div class="form-group">
+                    <label for="username">Tên tài khoản</label>
+                    <input type="text" id="username" name="username" placeholder="Nhập tên tài khoản" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Xác nhận mật khẩu</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Xác nhận mật khẩu" required>
+                </div>
+                <button type="submit" class="btn-submit">Đăng Ký</button>
+            </form>
+            <p>Bạn đã có tài khoản? <a href="login.html">Đăng nhập ngay</a>.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Website Du Lịch. Tất cả các quyền được bảo vệ.</p>
+        </div>
+    </footer>
+</body>
+</html>
