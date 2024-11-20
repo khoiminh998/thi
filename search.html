@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Kiếm - Website Du Lịch</title>
+    <link rel="stylesheet" href="tìm.css">
+    <style>
+        /* CSS thêm cho trang */
+        .search-section {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"] {
+            width: 400px;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-results {
+            margin-top: 20px;
+        }
+
+        .search-results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .search-results ul li {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .search-results ul li a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .search-results ul li a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Website Du Lịch</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="about.html">Giới Thiệu</a></li>
+                    <li><a href="destinations.html">Địa Điểm Du Lịch</a></li>
+                    <li><a href="search.html" class="active">Tìm Kiếm</a></li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Tìm Kiếm -->
+    <section id="search" class="search-section">
+        <div class="container">
+            <h2>Tìm Kiếm Tour Du Lịch</h2>
+            <form class="search-form" onsubmit="handleSearch(event)">
+                <input type="text" id="searchQuery" placeholder="Nhập từ khóa..." required>
+                <button type="submit">Tìm Kiếm</button>
+            </form>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Website Du Lịch. Tất cả các quyền được bảo vệ.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Danh sách dữ liệu mẫu
+        const tours = [
+            { name: "Núi Phú Sĩ", description: "Ngọn núi cao nhất Nhật Bản", url: "nơi1.html" },
+            { name: "Làng lịch sử Shirakawa-go và Gokayama", description: "Một Di sản thế giới được UNESCO công nhận tại Nhật Bản", url: "nơi2.html" },
+            { name: "Di tích Lịch sử của Nara cổ", description: "Di tích Lịch sử từng là thủ đô của Nhật Bản", url: "nơi3.html" },
+            { name: "Thành Himeji", description: "Một trong những kiến trúc cổ nhất còn sót lại ở Nhật Bản", url: "nơi4.html" },
+            { name: "Đền Itsukushima", description: "Quần thể này được UNESCO công nhận là Di sản thế giới, một số tòa nhà của nó cũng được Chính phủ Nhật Bản xếp hạng là các Báu vật Quốc gia.", url: "nơi5.html" },
+            { name: "Thủ đô Berlin", description: "Thành phố lớn nhất của Đức và Liên minh châu Âu", url: "nơi6.html" },
+            { name: "Thành phố cảng Hamburg", description: "Mang tên gọi “Cửa ngõ vào thế giới” của Đức.", url: "nơi7.html" },
+            { name: "Thành phố München", description: "Là thủ phủ của tiểu bang Bayern, là thành phố lớn thứ ba của Đức sau Berlin và Hamburg và là một trong những trung tâm kinh tế, giao thông và văn hóa quan trọng nhất của Cộng hòa Liên bang Đức.", url: "nơi8.html" },
+            { name: "Đảo Rügen", description: "Một hòn đảo nổi tiếng được ví như thiên đường biển ở Đức với vẻ đẹp cổ kính, trầm mặc.", url: "nơi9.html" },
+            { name: "Lâu đài Neuschwanstein", description: "Lâu đài nổi tiếng nhất trong số các lâu đài của Ludwig II và là một trong những địa danh nổi tiếng hàng đầu Châu Âu.", url: "nơi10.html" },
+            { name: "Bali", description: "Được mệnh danh là “hòn đảo thiên đường” với những bãi biển đẹp như tranh vẽ, những ngôi đền cổ kính và nền văn hóa đặc sắc.", url: "nơi11.html" },
+            { name: "Thành phố St.Petersburg", description: "Là thành phố lớn thứ hai của Nga, được mệnh danh là “thành phố hoa lệ bên dòng Neva”.", url: "nơi12.html" },
+            { name: "Hồ Geneva", description: "Nhắc đến địa điểm du lịch Thụy Sĩ, người ta liền nhớ đến hồ Geneva.", url: "nơi13.html" },
+            { name: "Thác nước sông Rhine", description: "Được xem là tuyệt tác của thiên nhiên Thụy Sĩ, là nơi đại diện cho vẻ đẹp vừa hùng vĩ, vừa thơ mộng của đất nước này.", url: "nơi14.html" },
+            { name: "Thủ đô Rome", description: "Rome, thủ đô của Ý nổi tiếng với những công trình kiến trúc đậm chất La Mã, những di sản văn hóa độc đáo và sở hữu các cảnh quan tuyệt đẹp, đầy ấn tượng.", url: "nơi15.html" },
+            { name: "Đảo Phuket", description: "Là hòn đảo lớn nhất tại Thái Lan, được mệnh danh là “Hòn ngọc của Thái Lan”.", url: "nơi16.html" },
+            { name: "Thành phố New Delhi", description: "Được mệnh danh là “thành phố vàng son” với những kiến trúc tráng lệ, những khu chợ nhộn nhịp và những món ăn ngon.", url: "nơi17.html" },
+            { name: "Đảo quốc Jamaica", description: "Nổi tiếng với vẻ đẹp tự nhiên, văn hóa đa dạng và lịch sử phong phú, cùng với âm nhạc Reggae và một loạt các hoạt động giải trí đa dạng.", url: "nơi18.html" },
+            { name: "Thành phố Cusco", description: "Cusco là một thành phố lịch sử và du lịch nổi tiếng tại Peru. Nằm ở phía nam nước này, Cusco là trung tâm văn hóa và lịch sử của vùng đất cao nguyên Andes và cũng là cửa ngõ chính để thăm thú khu di tích Machu Picchu - một trong những điểm đến du lịch hàng đầu thế giới.", url: "nơi19.html" },
+            { name: "Đảo Crete", description: "Là một trong số nhiều đảo của đất nước nằm bên bờ Địa Trung Hải và có diện tích khoảng 8.260km2.", url: "nơi20.html" },
+
+
+           
+        ];
+
+        // Hàm xử lý tìm kiếm
+        function handleSearch(event) {
+            event.preventDefault(); // Ngăn form tải lại trang
+            const query = document.getElementById('searchQuery').value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+
+            // Lọc kết quả
+            const results = tours.filter(tour => 
+                tour.name.toLowerCase().includes(query) || 
+                tour.description.toLowerCase().includes(query)
+            );
+
+            // Hiển thị kết quả
+            if (results.length > 0) {
+                const resultsHtml = results.map(tour => `
+                    <li>
+                        <a href="${tour.url}" target="_blank">${tour.name}</a> - ${tour.description}
+                    </li>
+                `).join('');
+                resultsContainer.innerHTML = `<ul>${resultsHtml}</ul>`;
+            } else {
+                resultsContainer.innerHTML = "<p>Không tìm thấy kết quả phù hợp.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

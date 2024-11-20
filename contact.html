@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Website Du Lịch</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS riêng cho trang Liên Hệ */
+        .contact-section {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .contact-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Website Du Lịch</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="about.html">Giới Thiệu</a></li>
+                    <li><a href="destinations.html">Địa Điểm Du Lịch</a></li>
+                    <li><a href="search.html">Tìm Kiếm</a></li>
+                    <li><a href="contact.html" class="active">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Liên Hệ -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Liên Hệ Chúng Tôi</h2>
+            <form class="contact-form" id="contactForm">
+                <label for="name">Họ và Tên:</label>
+                <input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
+
+                <label for="message">Nội Dung:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Nhập nội dung phản hồi hoặc yêu cầu thông tin" required></textarea>
+
+                <button type="submit">Gửi</button>
+            </form>
+            <div class="success-message" id="successMessage" style="display: none;">
+                Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Website Du Lịch. Tất cả các quyền được bảo vệ.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript để xử lý biểu mẫu
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn không gửi biểu mẫu thực tế
+            successMessage.style.display = 'block'; // Hiển thị thông báo thành công
+            contactForm.reset(); // Reset biểu mẫu
+        });
+    </script>
+</body>
+</html>
