@@ -82,3 +82,12 @@ footer {
     width: 100%;
     bottom: 0;
 }
+/* CSS cho tên đăng nhập */
+.user-greeting {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
