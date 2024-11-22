@@ -74,13 +74,20 @@ button:hover {
 }
 
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    background-color: #333; /* Màu nền cho footer */
+    text-align: center; /* Căn giữa nội dung */
+    padding: 10px 0; /* Khoảng cách trên và dưới */
+    width: 100%; /* Đảm bảo footer rộng toàn trang */
+    position: fixed; /* Cố định footer ở cuối trang */
+    bottom: 0; /* Đặt footer sát cạnh dưới */
+    left: 0; /* Sát cạnh trái */
+    border-top: 1px solid #ddd; /* Đường viền trên */
+}
+
+footer p {
+    margin: 0; /* Xóa khoảng cách mặc định của đoạn văn */
+    font-size: 1em; /* Kích thước chữ */
+    color: #f8f9fa; /* Màu chữ */
 }
 /* CSS cho tên đăng nhập */
 .user-greeting {
