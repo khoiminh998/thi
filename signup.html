@@ -107,9 +107,10 @@
                     <li><a href="search.html">Tìm Kiếm</a></li>
                     <li><a href="signup.html" class="active">Đăng Ký / Đăng Nhập</a></li>
                     <li><a href="contact.html">Liên Hệ</a></li>
-                    
                 </ul>
             </nav>
+            <div id="userGreeting" class="user-greeting"></div> <!-- Added to display the username -->
+            <button onclick="handleLogout()">Đăng Xuất</button>
         </div>
     </header>
 
@@ -126,7 +127,6 @@
                     <label for="loginPassword">Mật Khẩu</label>
                     <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required>
                     <button type="submit">Đăng Nhập</button>
-                  
                 </form>
 
                 <!-- Form Đăng Ký -->
@@ -139,7 +139,6 @@
                     <label for="signupPassword">Mật Khẩu</label>
                     <input type="password" id="signupPassword" placeholder="Nhập mật khẩu" required>
                     <button type="submit">Đăng Ký</button>
-                   
                 </form>
             </div>
         </div>
@@ -149,28 +148,92 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Syntactic Tour. Tất cả các quyền được bảo vệ.</p>
+            
+
         </div>
     </footer>
 
     <script>
-        // Xử lý Đăng Nhập
-        function handleLogin(event) {
-            event.preventDefault(); // Ngăn không tải lại trang
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            alert(`Đăng nhập thành công với email: ${email}`);
-            document.getElementById('loginForm').reset();
+       
+    // Kiểm tra xem tên và email đã đăng ký chưa
+    function isUserRegistered(name, email) {
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        return registeredUsers.some(user => user.name === name && user.email === email);
+    }
+
+    // Xử lý Đăng Nhập
+    function handleLogin(event) {
+        event.preventDefault(); // Ngăn không tải lại trang
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        const user = registeredUsers.find(user => user.email === email);
+
+        if (!user) {
+            alert("Email chưa được đăng ký.");
+            return;
         }
 
-        // Xử lý Đăng Ký
-        function handleSignup(event) {
-            event.preventDefault(); // Ngăn không tải lại trang
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            alert(`Đăng ký thành công! Chào mừng, ${name}!`);
-            document.getElementById('signupForm').reset();
+        // Kiểm tra mật khẩu
+        if (user.password === password) {
+            // Lưu tên người dùng vào localStorage
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            alert(`Đăng nhập thành công với email: ${email}`);
+            updateUserGreeting();
+        } else {
+            alert("Mật khẩu không chính xác.");
         }
+
+        document.getElementById('loginForm').reset();
+    }
+
+    // Xử lý Đăng Ký
+    function handleSignup(event) {
+        event.preventDefault(); // Ngăn không tải lại trang
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+
+        // Kiểm tra tên và email đã tồn tại
+        if (isUserRegistered(name, email)) {
+            alert("Tên và email này đã được đăng ký.");
+            return;
+        }
+
+        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Thêm người dùng mới vào danh sách
+        registeredUsers.push({ name, email, password });
+
+        // Lưu danh sách vào localStorage
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+
+        alert(`Đăng ký thành công! Chào mừng, ${name}!`);
+        document.getElementById('signupForm').reset();
+    }
+
+    // Cập nhật thông tin người dùng khi đăng nhập
+    function updateUserGreeting() {
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (loggedInUser) {
+            document.getElementById('userGreeting').innerText = `Xin chào, ${loggedInUser.name}`;
+        }
+    }
+
+    // Kiểm tra nếu người dùng đã đăng nhập khi tải lại trang
+    window.onload = function() {
+        updateUserGreeting();
+    }
+    // Xử lý Đăng Xuất
+function handleLogout() {
+    localStorage.removeItem('loggedInUser');
+    document.getElementById('userGreeting').innerText = ''; // Clear user greeting
+    alert("Đăng xuất thành công.");
+}
+
+</script>
+
     </script>
 </body>
 </html>
