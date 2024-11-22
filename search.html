@@ -146,30 +146,31 @@
            
         ];
 
-        // Hàm xử lý tìm kiếm
-        function handleSearch(event) {
-            event.preventDefault(); // Ngăn form tải lại trang
-            const query = document.getElementById('searchQuery').value.toLowerCase();
-            const resultsContainer = document.getElementById('searchResults');
+     // Hàm xử lý tìm kiếm
+function handleSearch(event) {
+    event.preventDefault(); // Ngăn form tải lại trang
+    const query = document.getElementById('searchQuery').value.toLowerCase();
+    const resultsContainer = document.getElementById('searchResults');
 
-            // Lọc kết quả
-            const results = tours.filter(tour => 
-                tour.name.toLowerCase().includes(query) || 
-                tour.description.toLowerCase().includes(query)
-            );
+    // Lọc kết quả
+    const results = tours.filter(tour => 
+        tour.name.toLowerCase().includes(query) || 
+        tour.description.toLowerCase().includes(query)
+    );
 
-            // Hiển thị kết quả
-            if (results.length > 0) {
-                const resultsHtml = results.map(tour => `
-                    <li>
-                        <a href="${tour.url}" target="_blank">${tour.name}</a> - ${tour.description}
-                    </li>
-                `).join('');
-                resultsContainer.innerHTML = `<ul>${resultsHtml}</ul>`;
-            } else {
-                resultsContainer.innerHTML = "<p>Không tìm thấy kết quả phù hợp.</p>";
-            }
-        }
+    // Hiển thị kết quả
+    if (results.length > 0) {
+        const resultsHtml = results.map(tour => `
+            <li>
+                <a href="${tour.url}">${tour.name}</a> - ${tour.description}
+            </li>
+        `).join('');
+        resultsContainer.innerHTML = `<ul>${resultsHtml}</ul>`;
+    } else {
+        resultsContainer.innerHTML = "<p>Không tìm thấy kết quả phù hợp.</p>";
+    }
+}
+
     </script>
 </body>
 </html>
