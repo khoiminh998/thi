@@ -59,4 +59,93 @@ header nav ul li a:hover {
 /* Danh sách địa điểm */
 .destination-list {
     display: flex;
-    flex-wra
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.destination-item {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    opacity: 0;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+.destination-item:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.destination-item:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+.destination-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Ảnh địa điểm */
+.destination-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.destination-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Tiêu đề địa điểm */
+.destination-item h3 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin: 15px 0 10px;
+}
+
+.destination-item p {
+    font-size: 1em;
+    color: #555;
+    padding: 0 10px 15px;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Hiệu ứng động */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
