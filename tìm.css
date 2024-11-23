@@ -1,21 +1,68 @@
-/* Section Tìm Kiếm */
-.search-section {
-    padding: 50px 20px;
-    background-color: #f8f9fa;
-    text-align: center;
-}
-
-.search-section h2 {
-    font-size: 3em;
+/* Đặt mặc định */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
     color: #333;
-    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
 }
 
+h2, h3 {
+    margin: 0;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hiệu ứng mờ dần khi xuất hiện */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Hiệu ứng mượt khi hiện/ẩn */
+.section {
+    padding: 50px 20px;
+    text-align: center;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Tiêu đề */
+h2, h3 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Thanh tìm kiếm */
 .search-form {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 10px;
+    margin-bottom: 30px;
+    animation: slideIn 0.7s ease-out;
 }
 
 .search-form input[type="text"] {
@@ -40,11 +87,92 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .search-form button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Kết quả tìm kiếm */
+.results {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.results h3 {
+    font-size: 1.8em;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.results h3:hover {
+    color: #0056b3;
+    transform: translateX(5px);
+}
+
+.results p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+/* Chi tiết địa điểm */
+.details-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.details-content img {
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.details-content img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.details-content p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.8;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Nút quay lại */
+.back-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Thông báo */
+.alert {
+    color: #d9534f;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    animation: fadeIn 0.4s ease-in-out;
 }
 * {
     margin: 0;
@@ -80,11 +208,18 @@ header nav ul li a {
     text-decoration: none;
 }
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    background-color: #333; /* Màu nền cho footer */
+    text-align: center; /* Căn giữa nội dung */
+    padding: 10px 0; /* Khoảng cách trên và dưới */
+    width: 100%; /* Đảm bảo footer rộng toàn trang */
+    position: fixed; /* Cố định footer ở cuối trang */
+    bottom: 0; /* Đặt footer sát cạnh dưới */
+    left: 0; /* Sát cạnh trái */
+    border-top: 1px solid #ddd; /* Đường viền trên */
+}
+
+footer p {
+    margin: 0; /* Xóa khoảng cách mặc định của đoạn văn */
+    font-size: 1em; /* Kích thước chữ */
+    color: #f8f9fa; /* Màu chữ */
 }
