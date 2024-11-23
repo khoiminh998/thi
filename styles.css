@@ -1,4 +1,3 @@
-/* Reset margin và padding cho tất cả các phần tử */
 * {
     margin: 0;
     padding: 0;
@@ -33,31 +32,82 @@ header nav ul li a {
     text-decoration: none;
 }
 
+/* Hiệu ứng xuất hiện động */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Phần chính */
 section {
     padding: 20px;
-    margin: 20px;
+    margin: 80px 20px 20px; /* Điều chỉnh khoảng cách để tránh header cố định */
     background-color: #fff;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out; /* Áp dụng hiệu ứng mờ dần */
 }
 
 h2 {
     color: #333;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out; /* Hiệu ứng trượt từ trái vào */
 }
 
 .destination {
     margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out; /* Hiệu ứng mờ dần */
 }
 
 .destination h3 {
     color: #007BFF;
+    cursor: pointer;
 }
 
-input[type="text"], input[type="email"], input[type="password"], textarea {
+.destination img {
+    max-width: 100%;
+    border-radius: 5px;
+    animation: fadeIn 1.2s ease-in-out; /* Hiệu ứng mờ dần cho hình ảnh */
+}
+
+/* Input và Button */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
 button {
@@ -67,12 +117,10 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
+/* Footer */
 footer {
     background-color: #333; /* Màu nền cho footer */
     text-align: center; /* Căn giữa nội dung */
@@ -82,6 +130,8 @@ footer {
     bottom: 0; /* Đặt footer sát cạnh dưới */
     left: 0; /* Sát cạnh trái */
     border-top: 1px solid #ddd; /* Đường viền trên */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 footer p {
@@ -89,12 +139,5 @@ footer p {
     font-size: 1em; /* Kích thước chữ */
     color: #f8f9fa; /* Màu chữ */
 }
-/* CSS cho tên đăng nhập */
-.user-greeting {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.2em;
-    color: #007bff;
-}
+
 
